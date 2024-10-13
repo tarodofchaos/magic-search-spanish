@@ -35,9 +35,9 @@ async function handleRequest(request: Request): Promise<Response> {
 
   if (json.type === InteractionType.APPLICATION_COMMAND) {
     const kvp = optionsToObject(json.data.options);
-    const scryfallResponse = await fetch(`https://api.scryfall.com/cards/${kvp['card']}`, {
+    const scryfallResponse = await fetch(`https://api.scryfall.com/cards/${kvp['card']}&include_multilingual=true`, {
       headers: {
-        'User-Agent': 'MagicSearchDiscordApp/1.0',
+        'User-Agent': 'MagicSearchSpanishDiscordApp/1.0',
         'Accept': 'application/json'
       }
     });
@@ -77,7 +77,7 @@ async function handleRequest(request: Request): Promise<Response> {
         });
       }
 
-      const scryfallResponse = await fetch(`https://api.scryfall.com/cards/search?q=${kvp['card']}`, {
+      const scryfallResponse = await fetch(`https://api.scryfall.com/cards/search?q=${kvp['card']}&include_multilingual=true`, {
         headers: {
           'User-Agent': 'MagicSearchDiscordApp/1.0',
           'Accept': 'application/json'
